@@ -1,0 +1,31 @@
+{
+  // Code Formating Config Here
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Auto Close Tag Config Here
+  "typescript.autoClosingTags": false,
+
+  // Code Action On Save Config Here
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.tslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+
+  // VSCode Emmet Including Language Config Here
+  "emmet.includeLanguages": {
+    "typescript": "typescriptreact"
+  },
+
+  // TailwindCSS Config Here
+  "css.validate": false,
+  "tailwindCSS.emmetCompletions": true,
+  "files.associations": {
+  "*.css": "tailwindcss"
+}
+}
