@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { CreateOrganization } from "@clerk/nextjs";
 import { Plus } from "lucide-react";
 
-export default function NewButton() {
+export default function AddNewButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
