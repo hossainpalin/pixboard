@@ -13,10 +13,10 @@ export default function EmptyOrg() {
         height={200}
       />
       <h2 className="mt-6 text-2xl font-semibold text-limed-spruce-900">
-        Welcome to RealTime Board
+        Welcome to Real-time PixBoard
       </h2>
       <p className="mt-2 text-sm text-limed-spruce-600">
-        Create your own board and start collaborating with your team
+        Create your own organization and start collaborating with your team
       </p>
 
       <div className="mt-6"></div>

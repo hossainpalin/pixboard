@@ -27,7 +27,7 @@ export default function OrgSidebar() {
             className={cn(
               "font-poppins text-xl font-semibold text-limed-spruce-900",
             )}>
-            RT Board
+            PixBoard
           </span>
         </div>
       </Link>
