@@ -18,7 +18,7 @@ export default function DashboardPage({ searchParams }: DashboardPageProps) {
       {!organization ? (
         <EmptyOrg />
       ) : (
-        <BoardList ordId={organization.id} query={searchParams} />
+        <BoardList orgId={organization.id} query={searchParams} />
       )}
     </div>
   );
