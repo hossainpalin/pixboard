@@ -12,6 +12,7 @@ export default function Navbar() {
   const { organization } = useOrganization();
   return (
     <div className="flex items-center gap-x-4 p-5">
+      {/* Search Input */}
       <div className="hidden lg:flex lg:flex-1">
         <SearchInput />
       </div>

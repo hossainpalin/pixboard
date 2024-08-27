@@ -10,7 +10,7 @@ import { useSearchParams } from "next/navigation";
 
 export default function OrgSidebar() {
   const searchParams = useSearchParams();
-  const favorite = searchParams.get("favorite");
+  const favorites = searchParams.get("favorite");
 
   return (
     <div className="hidden w-[206px] flex-col space-y-6 px-4 py-5 lg:flex">
@@ -25,7 +25,7 @@ export default function OrgSidebar() {
           />
           <span
             className={cn(
-              "font-poppins text-limed-spruce-900 text-xl font-semibold",
+              "font-poppins text-xl font-semibold text-limed-spruce-900",
             )}>
             RT Board
           </span>
@@ -58,27 +58,27 @@ export default function OrgSidebar() {
       {/* Team Boards */}
       <div className="w-full space-y-1">
         <Button
-          variant={favorite ? "ghost" : "secondary"}
+          variant={favorites ? "ghost" : "secondary"}
           asChild
           size="lg"
-          className="text-limed-spruce-900 w-full justify-start px-2">
+          className="w-full justify-start px-2 text-limed-spruce-900">
           <Link href="/">
-            <LayoutDashboard className="text-limed-spruce-900 mr-2 h-4 w-4" />
+            <LayoutDashboard className="mr-2 h-4 w-4 text-limed-spruce-900" />
             Team Boards
           </Link>
         </Button>
 
         <Button
-          variant={favorite ? "secondary" : "ghost"}
+          variant={favorites ? "secondary" : "ghost"}
           asChild
           size="lg"
-          className="text-limed-spruce-900 w-full justify-start px-2">
+          className="w-full justify-start px-2 text-limed-spruce-900">
           <Link
             href={{
               pathname: "/",
-              query: { favorite: true },
+              query: { favorites: true },
             }}>
-            <Star className="text-limed-spruce-900 mr-2 h-4 w-4" />
+            <Star className="mr-2 h-4 w-4 text-limed-spruce-900" />
             Favorite Boards
           </Link>
         </Button>
