@@ -18,6 +18,7 @@ export default function OrgSidebar() {
       <Link href="/">
         <div className="flex items-center gap-x-2">
           <Image
+            className="h-auto w-auto"
             src="/assets/icons/logo.svg"
             alt="logo"
             width={60}

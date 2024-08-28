@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import ConvexClientProvider from "@/providers/convex-client-provider";
+import ModalProvider from "@/providers/modal-provider";
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import React from "react";
@@ -31,6 +32,7 @@ export default function RootLayout({
         <ConvexClientProvider>
           {children}
           <Toaster />
+          <ModalProvider />
         </ConvexClientProvider>
       </body>
     </html>
