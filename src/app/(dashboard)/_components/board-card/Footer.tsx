@@ -18,6 +18,12 @@ export default function Footer({
   onClick,
   disabled,
 }: FooterProps) {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    e.preventDefault();
+    onClick();
+  };
+
   return (
     <div className="relative bg-white p-3">
       <p className="max-w-[calc(100%-20px)] truncate text-[15px] font-semibold text-limed-spruce-900">
@@ -28,7 +34,7 @@ export default function Footer({
       </p>
       <button
         disabled={disabled}
-        onClick={onClick}
+        onClick={handleClick}
         className={cn(
           "absolute right-3 top-6 text-limed-spruce-700 opacity-0 transition-opacity hover:text-blue-600 group-hover:opacity-100",
           disabled && "cursor-not-allowed opacity-75",

@@ -10,7 +10,7 @@ import { useSearchParams } from "next/navigation";
 
 export default function OrgSidebar() {
   const searchParams = useSearchParams();
-  const favorites = searchParams.get("favorite");
+  const favorites = searchParams.get("favorites");
 
   return (
     <div className="hidden w-[206px] flex-col space-y-6 px-4 py-5 lg:flex">
