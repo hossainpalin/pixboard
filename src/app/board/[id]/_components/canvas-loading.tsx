@@ -1,15 +1,15 @@
 import { Loader } from "lucide-react";
-import Info from "./info";
-import Participants from "./participants";
-import Toolbar from "./toolbar";
+import { InfoSkeleton } from "./info";
+import { ParticipantsSkeleton } from "./participants";
+import { ToolbarSkeleton } from "./toolbar";
 
 export default function CanvasLoading() {
   return (
     <main className="relative flex size-full touch-none items-center justify-center bg-neutral-100">
       <Loader className="text-muted-foreground size-6 animate-spin" />
-      <Info.Skeleton />
-      <Participants.Skeleton />
-      <Toolbar.Skeleton />
+      <InfoSkeleton />
+      <ParticipantsSkeleton />
+      <ToolbarSkeleton />
     </main>
   );
 }

@@ -56,14 +56,14 @@ export default function Actions({
         className="w-60">
         <DropdownMenuItem onClick={onCopyLink} className="cursor-pointer p-3">
           <Link2 className="mr-2 size-4" />
-          <span>Copy link</span>
+          <span>Copy Link</span>
         </DropdownMenuItem>
 
         <DropdownMenuItem
           onClick={() => onOpen(id, title)}
           className="cursor-pointer p-3">
           <Pencil className="mr-2 size-4" />
-          <span>Rename Board</span>
+          <span>Rename</span>
         </DropdownMenuItem>
 
         <ConfirmModal
@@ -75,7 +75,7 @@ export default function Actions({
             variant="ghost"
             className="w-full cursor-pointer justify-start p-3 text-sm font-normal">
             <Trash2 className="mr-2 size-4" />
-            <span>Delete Board</span>
+            <span>Delete</span>
           </Button>
         </ConfirmModal>
       </DropdownMenuContent>

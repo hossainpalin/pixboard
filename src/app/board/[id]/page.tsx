@@ -1,5 +1,5 @@
 import Room from "@/components/room";
-import Canvas from "./_components/Canvas";
+import Canvas from "./_components/canvas";
 import CanvasLoading from "./_components/canvas-loading";
 
 interface BoardIdPageProps {
