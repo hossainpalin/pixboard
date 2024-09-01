@@ -62,7 +62,7 @@ export default function Info({ boardId }: InfoProps) {
       <TabSeparator />
       <Actions id={data._id} title={data.title} side="bottom" sideOffset={10}>
         <div>
-          <Hint label="Edit Title" side="bottom" sideOffset={10}>
+          <Hint label="Board Actions" side="bottom" sideOffset={10}>
             <Button size="icon" variant="board" className="text-limed-spruce-900">
               <Menu />
             </Button>
