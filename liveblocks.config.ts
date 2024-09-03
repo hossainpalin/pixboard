@@ -59,6 +59,7 @@ export const {
   suspense: {
     RoomProvider,
     useOthers,
+    useOthersMapped,
     useOther,
     useSelf,
     useHistory,
