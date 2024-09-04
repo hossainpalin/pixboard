@@ -3,7 +3,6 @@
 import Actions from "@/components/Actions";
 import Hint from "@/components/Hint";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { useRenameModal } from "@/store/use-rename-modal";
 import { useQuery } from "convex/react";
@@ -28,7 +27,7 @@ export default function Info({ boardId }: InfoProps) {
     id: boardId as Id<"boards">,
   });
 
-  if (!data) return <InfoSkeleton />;
+  if (!data) return null;
 
   return (
     <div className="absolute left-2 top-2 flex h-12 items-center rounded-md bg-white px-1.5 shadow-md">
@@ -63,20 +62,15 @@ export default function Info({ boardId }: InfoProps) {
       <Actions id={data._id} title={data.title} side="bottom" sideOffset={10}>
         <div>
           <Hint label="Board Actions" side="bottom" sideOffset={10}>
-            <Button size="icon" variant="board" className="text-limed-spruce-900">
+            <Button
+              size="icon"
+              variant="board"
+              className="text-limed-spruce-900">
               <Menu />
             </Button>
           </Hint>
         </div>
       </Actions>
-    </div>
-  );
-}
-
-export function InfoSkeleton() {
-  return (
-    <div className="absolute left-2 top-2 flex h-12 w-[50px] items-center rounded-md bg-white shadow-md">
-      <Skeleton className="size-full" />
     </div>
   );
 }

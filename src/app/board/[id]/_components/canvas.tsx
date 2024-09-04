@@ -22,6 +22,7 @@ import Participants from "./participants";
 import Toolbar from "./toolbar";
 
 import {
+  findIntersectingLayerWithRectangle,
   getUserColor,
   pointerEventToCanvasPoint,
   resizeBounds,
@@ -31,6 +32,7 @@ import { useCanRedo, useCanUndo, useHistory } from "~/liveblocks.config";
 import { CursorsPresence } from "./cursors-presence";
 import { LayerPreview } from "./layer-preview";
 import SelectionBox from "./selection-box";
+import SelectionTools from "./selection-tools";
 
 interface CanvasProps {
   boardId: string;
@@ -113,6 +115,31 @@ export default function Canvas({ boardId }: CanvasProps) {
     [canvasState],
   );
 
+  // Update the selection box when the user is dragging it
+  const updateSelectionNet = useMutation(
+    ({ storage, setMyPresence }, current: Point, origin: Point) => {
+      const layers = storage.get("layers").toImmutable();
+      setCanvasState({ mode: CanvasMode.SelectionNet, origin, current });
+
+      const ids = findIntersectingLayerWithRectangle(
+        layerIds,
+        layers,
+        origin,
+        current,
+      );
+
+      setMyPresence({ selection: ids }, { addToHistory: false });
+    },
+    [layerIds],
+  );
+
+  // Start multi selection when the user is dragging the selection box
+  const startMultiSelection = useCallback((current: Point, origin: Point) => {
+    if (Math.abs(current.x - origin.x) + Math.abs(current.y - origin.y) > 5) {
+      setCanvasState({ mode: CanvasMode.SelectionNet, origin, current });
+    }
+  }, []);
+
   // Resize the selected layer when the user is dragging a resize handle
   const resizeSelectedLayer = useMutation(
     ({ storage, self }, point: Point) => {
@@ -133,13 +160,11 @@ export default function Canvas({ boardId }: CanvasProps) {
     [canvasState],
   );
 
-  const unselectLayer = useMutation((
-    { self, setMyPresence },
-  ) => {
-    if(self.presence.selection.length > 0) {
+  const unselectLayer = useMutation(({ self, setMyPresence }) => {
+    if (self.presence.selection.length > 0) {
       setMyPresence({ selection: [] }, { addToHistory: true });
     }
-  }, [])
+  }, []);
 
   // Handle the pointer down event on a resize handle
   const onResizeHandlePointerDown = useCallback(
@@ -166,7 +191,11 @@ export default function Canvas({ boardId }: CanvasProps) {
       e.preventDefault();
       const current = pointerEventToCanvasPoint(e, camera);
 
-      if (canvasState.mode === CanvasMode.Translating) {
+      if (canvasState.mode === CanvasMode.Pressing) {
+        startMultiSelection(current, canvasState.origin);
+      } else if (canvasState.mode === CanvasMode.SelectionNet) {
+        updateSelectionNet(current, canvasState.origin);
+      } else if (canvasState.mode === CanvasMode.Translating) {
         translateSelectedLayer(current);
       } else if (canvasState.mode === CanvasMode.Resizing) {
         resizeSelectedLayer(current);
@@ -261,8 +290,6 @@ export default function Canvas({ boardId }: CanvasProps) {
     return layerIdsToColorSelection;
   }, [selection]);
 
-  const { name, picture } = useSelf((me) => me.info);
-
   return (
     <main className="relative size-full touch-none bg-neutral-100">
       <Info boardId={boardId} />
@@ -275,6 +302,7 @@ export default function Canvas({ boardId }: CanvasProps) {
         undo={history.undo}
         redo={history.redo}
       />
+      <SelectionTools camera={camera} setLastUsedColor={setLastUsedColor} />
       <svg
         className="h-screen w-screen"
         onWheel={onWheel}
@@ -292,6 +320,16 @@ export default function Canvas({ boardId }: CanvasProps) {
             />
           ))}
           <SelectionBox onResizeHandlePointerDown={onResizeHandlePointerDown} />
+          {canvasState.mode === CanvasMode.SelectionNet &&
+            canvasState.current != null && (
+              <rect
+                className="fill-blue-500/5 stroke-blue-500 stroke-1"
+                x={Math.min(canvasState.origin.x, canvasState.current.x)}
+                y={Math.min(canvasState.origin.y, canvasState.current.y)}
+                width={Math.abs(canvasState.origin.x - canvasState.current.x)}
+                height={Math.abs(canvasState.origin.y - canvasState.current.y)}
+              />
+            )}
           <CursorsPresence />
         </g>
       </svg>

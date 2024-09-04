@@ -1,4 +1,3 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import {
   Circle,
   MousePointer2,
@@ -131,14 +130,6 @@ export default function Toolbar({
           isDisabled={!canRedo}
         />
       </div>
-    </div>
-  );
-}
-
-export function ToolbarSkeleton() {
-  return (
-    <div className="absolute left-2 top-[50%] flex h-[360px] w-[52px] -translate-y-[50%] flex-col gap-y-4 bg-white shadow-md">
-      <Skeleton className="size-full" />
     </div>
   );
 }
