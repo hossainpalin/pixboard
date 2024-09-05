@@ -1,7 +1,12 @@
-import { createClient, LiveList, LiveMap, LiveObject } from "@liveblocks/client";
+import {
+  createClient,
+  LiveList,
+  LiveMap,
+  LiveObject,
+} from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
 
-import { Layer, Color } from "./types/canvas";
+import { Color, Layer } from "./types/canvas";
 
 const client = createClient({
   throttle: 16,
@@ -14,6 +19,8 @@ declare global {
     Presence: {
       cursor: { x: number; y: number } | null;
       selection: string[];
+      pencilDraft: [x: number, y: number, presence: number][] | null;
+      pencilColor: Color | null;
     };
 
     // The Storage tree for the room, for useMutation, useStorage, etc.

@@ -1,9 +1,11 @@
 "use client";
 
+import { colorToCss } from "@/lib/utils";
 import { useStorage } from "~/liveblocks.config";
 import { LayerType } from "~/types/canvas";
 import Ellipse from "./ellipse";
 import Note from "./note";
+import Path from "./path";
 import Rectangle from "./rectangle";
 import Text from "./text";
 
@@ -60,6 +62,19 @@ export const LayerPreview = ({
           layer={layer}
           onLayerPointerDown={onLayerPointerDown}
           selectionColor={selectionColor}
+        />
+      );
+
+    case LayerType.Path:
+      return (
+        <Path
+          key={id}
+          points={layer.points}
+          onLayerPointerDown={(e) => onLayerPointerDown(e, id)}
+          stroke={selectionColor}
+          fill={layer.fill ? colorToCss(layer.fill) : "#000"}
+          x={layer.x}
+          y={layer.y}
         />
       );
 
