@@ -9,7 +9,7 @@ import { MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
-import { api } from "../../../../../convex/_generated/api";
+import { api } from "~/convex/_generated/api";
 import Footer from "./Footer";
 import Overlay from "./Overlay";
 

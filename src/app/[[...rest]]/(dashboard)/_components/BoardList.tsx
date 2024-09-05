@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "convex/react";
-import { api } from "../../../../convex/_generated/api";
+import { api } from "~/convex/_generated/api";
 import BoardCard, { BoardCardSkeleton } from "./board-card";
 import EmptyBoard from "./EmptyBoard";
 import EmptyFavorites from "./EmptyFavorites";
